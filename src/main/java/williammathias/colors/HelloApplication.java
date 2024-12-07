@@ -15,6 +15,10 @@ public class HelloApplication extends Application {
         scene.getStylesheets().add(HelloApplication.class.getResource("/williammathias/colors/styles.css").toExternalForm());
         stage.setTitle("Hello!");
         stage.setScene(scene);
+
+        HelloController controller = fxmlLoader.getController();
+        controller.setStage(stage);
+
         stage.show();
     }
 

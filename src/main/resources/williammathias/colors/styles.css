@@ -1,4 +1,8 @@
-.start {
+.cool-button {
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-font-family: "Comic Sans MS";
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-border-width: 2;
@@ -6,21 +10,20 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
     -fx-font-size: 25px;
     -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
 }
 
-.start:hover {
+.cool-button:hover {
     -fx-background-color: #ff0000;
     -fx-cursor: hand;
 }
 
-.start:pressed {
+.cool-button:pressed {
     -fx-background-color: #00ff00;
 }
 
 .color-button {
     -fx-background-radius: 10;
-    -fx-border-radius: 10;
+    -fx-border-radius: 11;
     -fx-border-width: 2;
     -fx-border-color: #000000;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 0);
@@ -32,8 +35,9 @@
 }
 
 .big-red-text {
-    -fx-font-size: 30px;
-    -fx-font-weight: bold;
+    -fx-font-family: "Comic Sans MS";
+    -fx-font-size: 32px;
+    -fx-font-weight: bolder;
     -fx-text-fill: #ff0000;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0, 0, 0);
 }
