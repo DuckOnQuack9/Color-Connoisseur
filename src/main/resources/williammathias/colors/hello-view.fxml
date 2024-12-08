@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="williammathias.colors.ColorConnoisseur.java">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="williammathias.colors.HelloController">
    <bottom>
       <Button fx:id="startButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="79.0" prefWidth="493.0" styleClass="cool-button" text="Start" BorderPane.alignment="CENTER">
          <BorderPane.margin>
