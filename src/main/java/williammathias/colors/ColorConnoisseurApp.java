@@ -7,16 +7,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class ColorConnoisseurApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/williammathias/colors/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ColorConnoisseurApp.class.getResource("/williammathias/colors/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 750, 750);
-        scene.getStylesheets().add(HelloApplication.class.getResource("/williammathias/colors/styles.css").toExternalForm());
+        scene.getStylesheets().add(ColorConnoisseurApp.class.getResource("/williammathias/colors/styles.css").toExternalForm());
         stage.setTitle("Epic game");
         stage.setScene(scene);
 
-        HelloController controller = fxmlLoader.getController();
+        ColorConnoisseurController controller = fxmlLoader.getController();
         controller.setStage(stage);
 
         stage.show();
