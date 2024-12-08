@@ -7,13 +7,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.*;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
+import javafx.scene.media.*;
+
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.nio.file.Paths;
 
 public class HelloController {
     private Stage stage;
@@ -90,10 +91,7 @@ public class HelloController {
                 Platform.runLater(() -> {
                     HBox textBox = new HBox();
                     textBox.setAlignment(javafx.geometry.Pos.CENTER);
-                    Label textLabel = new Label("Level: " + level + "  |  " + "Time: " + time);
-                    textLabel.setAlignment(javafx.geometry.Pos.CENTER);
-                    textLabel.getStyleClass().add("big-red-text");
-                    textBox.getChildren().add(textLabel);
+                    textBox.getChildren().add(createLabel("Level: " + level + "  |  " + "Time: " + time));
                     root.setTop(textBox);
                     time--;
                 });
@@ -112,25 +110,55 @@ public class HelloController {
         int blue = (int) (color.getBlue() * 255);
         return String.format("rgb(%d, %d, %d)", red, green, blue);
     }
+    private MediaView getExplosionMediaView() {
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(Paths.get("src/main/resources/williammathias/colors/explosion.mp4").toUri().toString()));
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setCycleCount(1);
+        mediaPlayer.setVolume(0.1);
+
+        MediaView explosionMediaView = new MediaView(mediaPlayer);
+        explosionMediaView.setPreserveRatio(true);
+        explosionMediaView.rotateProperty().set(270);
+
+        // Resize explosionMediaView to fit the scene when scene is resized
+        root.sceneProperty().addListener((_, _, newScene) -> {
+            explosionMediaView.fitHeightProperty().bind(newScene.heightProperty());
+            explosionMediaView.fitWidthProperty().bind(newScene.widthProperty());
+        });
+
+        return explosionMediaView;
+    }
+
+    private Label createLabel(String text) {
+        Label label = new Label(text);
+        label.getStyleClass().add("big-red-text");
+        return label;
+    }
 
     private void gameOver() {
-        VBox vbox = new VBox();
-        Label gameOverLabel = new Label("Game Over!");
-        gameOverLabel.getStyleClass().add("big-red-text");
-
-        Label levelLabel = new Label("Level: " + level);
-        levelLabel.getStyleClass().add("big-red-text");
-
-        Button tryAgainButton = new Button("Play Again");
-        tryAgainButton.setPrefSize(200, 75);
-        tryAgainButton.getStyleClass().add("cool-button");
-        tryAgainButton.setOnAction((event) -> runGame());
-        vbox.getChildren().addAll(gameOverLabel, levelLabel, tryAgainButton, getMenuContainer());
-        vbox.setAlignment(javafx.geometry.Pos.CENTER);
+        VBox container = new VBox();
+        MediaView explosionMediaView = getExplosionMediaView();
         root.setTop(null);
-        root.setCenter(vbox);
+        root.setCenter(explosionMediaView);
         timer.cancel();
-        level = 1;
+
+        explosionMediaView.getMediaPlayer().setOnEndOfMedia(() -> {
+            root.getChildren().remove(explosionMediaView);
+            Button tryAgainButton = new Button("Play Again");
+            tryAgainButton.setPrefSize(200, 75);
+            tryAgainButton.getStyleClass().add("cool-button");
+            tryAgainButton.setOnAction((_) -> runGame());
+
+            container.getChildren().addAll(
+                    createLabel("Game Over!"),
+                    createLabel("Level: " + level),
+                    tryAgainButton,
+                    getMenuContainer()
+            );
+            container.setAlignment(javafx.geometry.Pos.CENTER);
+            root.setCenter(container);
+            level = 1;
+        });
     }
 
     @FXML
@@ -170,16 +198,13 @@ public class HelloController {
         for (int r = 0; r < rowNum; r++) {
             HBox hbox = new HBox();
             hbox.setSpacing(10);
-
             for (int c = 0; c < colNum; c++) {
                 Button button = new Button();
                 button.setMinSize(100, 100);
                 button.getStyleClass().add("color-button");
-
                 // Determine correct button color
                 if (r == diffColorRow && c == diffColorCol) { button.setStyle("-fx-background-color: " + toRgbString(diffColor) + ";");}
                 else { button.setStyle("-fx-background-color: " + toRgbString(sameColor) + ";");}
-
                 // Set button action for color checking
                 button.setOnAction((event) -> {
                     Button thisButton = (Button) event.getSource();

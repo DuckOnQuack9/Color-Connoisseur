@@ -36,8 +36,8 @@
 
 .big-red-text {
     -fx-font-family: "Comic Sans MS";
-    -fx-font-size: 32px;
-    -fx-font-weight: bolder;
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
     -fx-text-fill: #ff0000;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.75), 10, 0, 0, 0);
 }

@@ -13,7 +13,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/williammathias/colors/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 750, 750);
         scene.getStylesheets().add(HelloApplication.class.getResource("/williammathias/colors/styles.css").toExternalForm());
-        stage.setTitle("Hello!");
+        stage.setTitle("Epic game");
         stage.setScene(scene);
 
         HelloController controller = fxmlLoader.getController();
