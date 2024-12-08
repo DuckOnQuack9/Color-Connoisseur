@@ -16,7 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.nio.file.Paths;
 
-public class HelloController {
+public class ColorConnoisseur {
     private Stage stage;
     private Timer timer = new Timer();
     private int level = 1;
