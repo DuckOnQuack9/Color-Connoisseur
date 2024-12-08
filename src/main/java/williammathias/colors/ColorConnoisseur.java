@@ -17,6 +17,7 @@ import java.util.TimerTask;
 import java.nio.file.Paths;
 
 public class ColorConnoisseur {
+    private Stage stage;
     private Timer timer = new Timer();
     private int level = 1;
     private int time;
@@ -38,6 +39,10 @@ public class ColorConnoisseur {
         startButton.setOnAction((event) -> {
             onStartButtonClick();
         });
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     private HBox getMenuContainer() {
