@@ -172,8 +172,8 @@ public class ColorConnoisseurController {
         int red = (int) (Math.random() * 255);
         int green = (int) (Math.random() * 255);
         int blue = (int) (Math.random() * 255);
-        int diffColorRow = (int) (Math.random() * 3);
-        int diffColorCol = (int) (Math.random() * 3);
+        int diffColorRow = (int) (Math.random() * rowNum);
+        int diffColorCol = (int) (Math.random() * colNum);
 
         if (red < threshold && green < threshold && blue < threshold) {
             while (red < threshold && green < threshold && blue < threshold) {
